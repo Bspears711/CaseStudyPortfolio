@@ -1,0 +1,157 @@
+/**** The code listed below is for viewing purposes and only showcases ability to perform Select, From, & Where Statements, as well as Insert Into Statements, Joins, and Union
+Statements. The queries were in no way used to draw any conclusions to dicoverable insights that were produced for my case study and did not contribute to any data-driven decisions****/
+
+
+Table 1 Query
+--CREATE TABLE TransactionInfo
+--(transaction_date_time DATETIME,
+--sales_outlet_id INTEGER,
+--staff_id INTEGER,
+--customer_id INTEGER,
+--instore_yn TEXT)
+
+Table 2 Query
+--CREATE TABLE ProductInfo
+--(number_of_orders INTEGER,
+--line_item_id INTEGER,
+--product_id INTEGER,
+--quantity INTEGER,
+--line_item_amount MONEY,
+--unit_price MONEY,
+--promo_item_yn TEXT)
+
+Table 1 Insert
+--INSERT INTO TransactionInfo VALUES
+--('4-1-2019 12:04:43', 3, 12, 558, 'No'),
+--('4/1/2019 15:54:39', 3, 17,781, 'No'),
+--('4-1-2019 14:34:59', 3, 17, 788, 'Yes'),
+--('4-1-2019 16:06:04', 3, 12, 683, 'No'),
+--('4-1-2019 19:18:37', 3, 17, 99, 'Yes'),
+--('4-1-2019 18:54:46', 3, 17, 664, 'Yes'),
+--('4-1-2019 13:03:49', 3, 12, 316, 'No'),
+--('4-1-2019 11:21:14', 3, 12, 38, 'No'),
+--('4-1-2019 19:30:55', 3, 12, 370, 'Yes'),
+--('4-1-2019 12:01:00', 3, 12, 180, 'Yes')
+
+Table 2 Insert
+--INSERT INTO ProductInfo VALUES
+--(1, 1, 52, 1, $2.50, $2.50, 'No'),
+--(1, 1, 27, 2, $7.00, $3.50, 'No'),
+--(1, 1, 46, 2, $5.00, $2.50, 'No'),
+--(1, 1, 23, 2, $5.00, $2.50, 'No'),
+--(1, 1, 34, 1, $2.45, $2.45, 'No'),
+--(1, 1, 32, 1, $3.00, $3.00, 'No'),
+--(1, 1, 49, 2, $6.00, $3.00, 'No'),
+--(1, 1, 60, 1, $3.75, $3.75, 'No'),
+--(1, 1, 51, 2, $6.00, $3.00, 'No'),
+--(1, 1, 49, 2, $6.00, $3.00, 'No')
+
+/***Script for Select Example Queries***/
+
+
+--SELECT*
+--  FROM TransactionInfo
+
+  --SELECT TOP (5)
+  --FROM TransactionInfo
+
+
+  --SELECT DISTINCT COUNT(unit_price) AS InvestedMoney
+  --FROM ProductInfo 
+
+  --SELECT COUNT(line_item_amount) AS Revenue
+  --FROM ProductInfo
+
+  --SELECT MAX(line_item_amount) AS HighestRevenuePrice
+  --FROM ProductInfo
+
+  --SELECT MIN(line_item_amount) AS LowestRevenuePrice
+  --From ProductInfo
+
+  --SELECT AVG(line_item_amount) As AverageRevenuePrice
+  --FROM ProductInfo
+
+  --SELECT*
+  --FROM TransactionInfo
+  --WHERE staff_id = 12
+
+  --SELECT*
+  --FROM ProductInfo
+  --WHERE quantity <> 1
+
+  --SELECT*
+  --FROM ProductInfo
+  --Where product_id >= 50
+
+  --SELECT*
+  --FROM ProductInfo
+  --WHERE product_id < 50 AND unit_price = 2.50
+
+  --SELECT*
+  --FROM ProductInfo
+  --WHERE product_id = 49 AND promo_item_yn LIKE 'Y%'
+
+  --SELECT* 
+  --FROM TransactionInfo
+  --WHERE customer_id is NOT NULL
+
+  --SELECT*
+  --FROM TransactionInfo
+  --WHERE customer_id IS NULL
+
+  --SELECT*
+  --FROM ProductInfo
+  --Where unit_price IN (5.00, 6.00)
+
+/***Script for OrderBy & GroupBy Example Queries***/
+
+--SELECT product_id, COUNT(line_item_amount)
+--FROM ProductInfo
+--GROUP BY product_id
+
+--SELECT product_id, COUNT(unit_price)
+--FROM ProductInfo
+--WHERE quantity > 1
+--GROUP BY product_id;
+
+--SELECT product_id, COUNT(line_item_amount)
+--FROM ProductInfo
+--WHERE quantity = 1
+--GROUP BY product_id
+--ORDER BY COUNT(line_item_amount) DESC
+
+--SELECT product_id, COUNT(line_item_amount)
+--FROM ProductInfo
+--WHERE quantity = 1 
+--GROUP BY product_id
+--ORDER BY COUNT(line_item_amount) ASC
+
+/***Script for Example JOINS Statements***/
+
+--SELECT TransactionInfo.transaction_date_time, sales_outlet_id, staff_id, customer_id, instore_yn
+--FROM SQLPortfolio1.dbo.TransactionInfo
+--FULL OUTER JOIN SQLPortfolio1.dbo.ProductInfo
+
+--SELECT TransactionInfo.transaction_date_time, sales_outlet_id, staff_id, customer_id, instore_yn
+--FROM SQLPortfolio1.dbo.TransactionInfo
+--RIGHT OUTER JOIN SQLPortfolio1.dbo.ProdcutInfo
+
+
+--SELECT TransactionInfo.transaction_date_time, sales_outlet_id, staff_id, customer_id, instore_yn
+--FROM SQLPortfolio1.dbo.TransactionInfo
+--INNER JOIN SQLPortfolio1.dbo.ProductInfo
+
+/***Script for Example UNION Statements***/
+
+--SELECT*
+--FROM SQLPortfolio1.dbo.ProductInfo
+--UNION
+--SELECT*
+--FROM SQLPortfolio1.dbo.TransactionInfo
+
+
+--SELECT*
+--FROM SQLPortfolio1.dbo.ProductInfo
+--UNION ALL
+--SELECT*
+--FROM SQLPortfolio1.dbo.TransactionInfo
